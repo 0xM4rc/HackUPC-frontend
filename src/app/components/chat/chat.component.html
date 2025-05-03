@@ -1,0 +1,32 @@
+<div class="card-container">
+    <!-- Cabecera -->
+    <div class="card-header">
+      <div class="img-avatar"></div>
+      <div class="text-chat">Chat</div>
+    </div>
+  
+    <!-- Cuerpo -->
+    <div class="card-body">
+      <!-- Lista de mensajes -->
+      <div class="messages-container" #msgList>
+        <div
+          *ngFor="let m of messages"
+          class="message-box"
+          [ngClass]="m.side">
+          <p>{{ m.text }}</p>
+        </div>
+      </div>
+  
+      <!-- Input + botón -->
+      <form class="message-input" (ngSubmit)="send()">
+        <textarea
+          [(ngModel)]="input"
+          name="message"
+          class="message-send"
+          placeholder="Type your message here"
+          rows="1"></textarea>
+        <button class="button-send" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+  
