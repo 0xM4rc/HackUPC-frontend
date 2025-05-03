@@ -1,12 +1,13 @@
+// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RegisterComponent } from './pages/register/register.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [CommonModule, RegisterComponent],
+  template: '<app-register></app-register>'
 })
-export class AppComponent {
-  title = 'HackUPC-frontend';
-}
+export class AppComponent {}
+

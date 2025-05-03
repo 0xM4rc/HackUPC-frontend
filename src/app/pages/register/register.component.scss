@@ -1,0 +1,214 @@
+/* al principio de register.component.scss */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .form {
+    overflow-x: hidden;
+  }
+  
+
+/* ---------- Página centrada ---------- */
+.page {
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fa;
+    padding: 1.5rem;
+  }
+  
+  /* ---------- Card / Formulario ---------- */
+  /* Estilo base tomado de Uiverse y ajustado */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 350px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px 26px;
+    border-radius: 20px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+    position: relative;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* ---------- Título con burbujas ---------- */
+  .title {
+    font-size: 28px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: -6px;
+  }
+  
+  .title::before,
+  .title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background: royalblue;
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    background: royalblue;
+    animation: pulse 1.2s linear infinite;
+  }
+  
+  @keyframes pulse {
+    0%   { transform: scale(1);   opacity: 0.9; }
+    100% { transform: scale(1.8); opacity: 0;   }
+  }
+  
+  /* ---------- Texto complementario ---------- */
+  .message {
+    font-size: 14px;
+    color: #575757;
+    margin-top: -6px;
+  }
+  
+  /* ---------- Campos de entrada ---------- */
+  label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* inputs de texto, número y el interno de etiquetas */
+  .input {
+    width: 100%;
+    padding: 12px 10px 10px;
+    border: 1px solid rgba(105, 105, 105, 0.4);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    background: transparent;
+    transition: border 0.25s;
+  }
+  
+  /* efecto de foco */
+  .input:focus {
+    border-color: royalblue;
+  }
+  
+  /* etiqueta flotante */
+  label span {
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    pointer-events: none;
+    transition: 0.2s ease;
+  }
+  
+  /* estado inicial (placeholder visible) */
+  .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  /* cuando hay texto o foco */
+  .input:focus + span,
+  .input:not(:placeholder-shown) + span {
+    top: 34px;
+    font-size: 0.72em;
+    font-weight: 600;
+    color: royalblue;
+  }
+  
+  .input:valid + span {
+    color: green;
+  }
+  
+  /* ---------- Checkbox ---------- */
+  .checkbox {
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .check-label {
+    position: static;   /* anula el posicionamiento flotante */
+    font-weight: 500;
+    font-size: 0.92rem;
+  }
+  
+  /* ---------- Contenedor de tags ---------- */
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid rgba(105, 105, 105, 0.4);
+    border-radius: 10px;
+    min-height: 44px;
+  }
+  
+  /* cada tag */
+  .tag {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  
+    button {
+      border: none;
+      background: none;
+      font-size: 1rem;
+      line-height: 0.8;
+      cursor: pointer;
+      transition: color 0.2s;
+  
+      &:hover {
+        color: #d93025;
+      }
+    }
+  }
+  
+  /* input que añade nuevas etiquetas */
+  .tag-input {
+    border: none;
+    padding: 8px 4px;
+    min-width: 80px;
+    flex: 1;
+  }
+  
+  /* quita borde/fondo al focus dentro de contenedor */
+  .tag-input:focus {
+    outline: none;
+  }
+  
+  /* ---------- Botón submit ---------- */
+  .submit {
+    border: none;
+    background: royalblue;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+  
+  .submit:hover:not(:disabled) {
+    background: rgb(56, 90, 194);
+  }
+
+  

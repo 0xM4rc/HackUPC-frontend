@@ -1,0 +1,66 @@
+<section class="page">
+    <form [formGroup]="form" (ngSubmit)="guardar()" class="form">
+  
+      <p class="title">Registro</p>
+      <p class="message">Completa los campos para crear tu perfil nutricional</p>
+  
+      <!-- Nombre -->
+      <label>
+        <input type="text"
+               class="input"
+               placeholder=" "
+               formControlName="nombre"
+               required />
+        <span>Nombre</span>
+      </label>
+  
+      <!-- Apellidos -->
+      <label>
+        <input type="text"
+               class="input"
+               placeholder=" "
+               formControlName="apellidos"
+               required />
+        <span>Apellidos</span>
+      </label>
+  
+      <!-- Edad -->
+      <label>
+        <input type="number"
+               class="input"
+               placeholder=" "
+               formControlName="edad"
+               min="0"
+               required />
+        <span>Edad</span>
+      </label>
+  
+      <!-- ¿Diabético? (checkbox) -->
+      <label class="checkbox flex">
+        <input type="checkbox" formControlName="diabetico" />
+        <span class="check-label">¿Es diabético?</span>
+      </label>
+  
+      <!-- Etiquetas tipo de comida -->
+      <label>
+        <div class="tag-container">
+          <span class="tag"
+                *ngFor="let t of chipsCtrl.value; let i = index">
+            {{ t }}
+            <button type="button" (click)="removeTag(i)">×</button>
+          </span>
+  
+          <input #tagInput
+                 class="input tag-input"
+                 placeholder=" "
+                 autocomplete="off"
+                 (keyup.enter)="addTag(tagInput)"
+                 (blur)="addTag(tagInput)" />
+        </div>
+        <span>Tipo de comida</span>
+      </label>
+  
+      <button class="submit" type="submit">Registrar</button>
+    </form>
+  </section>
+  
