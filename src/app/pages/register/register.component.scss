@@ -105,7 +105,37 @@
   }
   
   /* etiqueta flotante */
-  label span {
+  // label span {
+  //   position: absolute;
+  //   left: 12px;
+  //   top: 15px;
+  //   color: grey;
+  //   font-size: 0.9em;
+  //   pointer-events: none;
+  //   transition: 0.2s ease;
+  // }
+
+  // label span {
+  //   position: absolute;
+  //   left: 12px;
+  //   top: 15px;
+  //   color: grey;
+  //   font-size: 0.9em;
+  //   pointer-events: none;
+  //   transition: 0.2s ease;
+  // }
+  .checkbox .check-label {
+    // position: static; /* Anula position: absolute */
+    position: absolute;
+    left: 0px;
+    top: auto;      /* Anula top: 15px */
+    color: grey;
+    font-size: 0.9em;
+    transition: 0.2s ease;
+    /* Otros estilos que necesites para la alineación */
+  }
+
+  .floating_span {
     position: absolute;
     left: 12px;
     top: 15px;
@@ -117,14 +147,14 @@
   
   /* estado inicial (placeholder visible) */
   .input:placeholder-shown + span {
-    top: 15px;
+    top: 10px;
     font-size: 0.9em;
   }
   
   /* cuando hay texto o foco */
   .input:focus + span,
   .input:not(:placeholder-shown) + span {
-    top: 34px;
+    top: 42px;
     font-size: 0.72em;
     font-weight: 600;
     color: royalblue;
@@ -136,14 +166,22 @@
   
   /* ---------- Checkbox ---------- */
   .checkbox {
-    align-items: center;
-    gap: 8px;
+    // display: flex; /* Añade display flex */
+    // align-items: center; /* Alinea verticalmente al centro */
+    // gap: -8px; /* Opcional: Espacio entre el label y el checkbox */
+    // margin-left: -10px; /* Mantiene el margen izquierdo */
+    top: 8px;
   }
   
   .check-label {
-    position: static;   /* anula el posicionamiento flotante */
+    /* display: inline-block; Ya no es necesario con flex */
+    position: static;
+    align-self: auto;
     font-weight: 500;
-    font-size: 0.92rem;
+    font-size: larger;
+    top: -30px; /* Esto podría necesitar ajuste con flex */
+    margin-top: 0; /* Asegúrate de que no haya margen superior innecesario */
+    line-height: 1;
   }
   
   /* ---------- Contenedor de tags ---------- */

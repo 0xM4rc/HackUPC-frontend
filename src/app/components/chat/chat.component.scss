@@ -1,18 +1,18 @@
 .card-container {
     background-color: #fff;
     border-radius: 10px;
-    padding: 15px;
+    // padding: 15px;
     display: flex;
     flex-direction: column;
     width: 310px;
-    height: 100%;          /* llena la columna lateral */
+    height: 85%;          /* llena la columna lateral */
   }
   
   /* …(todo tu CSS anterior de .card-header, .message-box, etc.)… */
   .card-header {
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
+    padding: 10px;
     border-bottom: 1px solid #ccc;
   }
   
@@ -31,17 +31,18 @@
   }
   
   .card-body {
-    flex: 1;
-    
+    // flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-height: 100%;
   }
   
   .messages-container {
     padding: 15px;
     flex: 1;
-    
+    max-height: 100%;
+    overflow-y: auto;
   }
   
   .message-box {
