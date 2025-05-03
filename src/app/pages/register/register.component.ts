@@ -2,6 +2,9 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../models/user.model';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-register',
@@ -14,11 +17,12 @@ export class RegisterComponent {
 
   /** constructor & formulario ---------------------------------------- */
   private fb = inject(FormBuilder);          // API inject → disponible en la línea siguiente
+  edad: number | null = null;
 
   form = this.fb.group({
     nombre:     ['', Validators.required],
     apellidos:  ['', Validators.required],
-    edad:       [null, [Validators.required, Validators.min(0)]],
+    fechaNacimiento: [null, Validators.required],
     diabetico:  [false],
     tipoComida: [[] as string[]]
   });
@@ -41,8 +45,12 @@ export class RegisterComponent {
   }
 
   guardar() {
-    if (this.form.invalid) { this.form.markAllAsTouched(); return; }
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     const user: User = this.form.value as User;
     console.log('Usuario registrado', user);
   }
+  
 }
