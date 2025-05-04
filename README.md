@@ -1,4 +1,16 @@
 # HackUPCFrontend
+## Smart Food Assistant
+
+## Project
+
+This is the project **Smart Food Assistant**.
+
+## Inspiration
+
+The inspiration comes from the idea of solving shopping needs, especially food-related ones. We want to help users find the best products by considering dietary preferences, intolerances (such as diabetes), and personal tastes.
+
+
+
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
