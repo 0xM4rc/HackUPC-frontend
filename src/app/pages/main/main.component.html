@@ -1,11 +1,24 @@
 <div class="layout">
-  <div class="contenido-principal">
-    <!-- Aquí va tu contenido principal -->
-    <h1>Contenido principal</h1>
-  </div>
+    <div class="contenido-principal">
+      <h1>Contenido principal</h1>
+      <!-- <ul>
+        <li *ngFor="let id of ids">{{ id }}</li>
+      </ul> -->
+      
+      <h1>Imágenes de Productos Seleccionados</h1>
 
-  <div class="chat-lateral">
-    <app-chat></app-chat>
-  </div>
+      <p>Aquí tienes 5 imágenes de productos seleccionados aleatoriamente:</p>
+      <div *ngIf="idsAleatorios.length > 0">
+        <div *ngFor="let idAleatorio of idsAleatorios" style="margin-bottom: 10px;">
+          <img [src]="getImageUrl(idAleatorio)" alt="Imagen del producto {{ idAleatorio }}" style="max-width: 150px; height: auto;">
+        </div>
+      </div>
+      <div *ngIf="idsAleatorios.length === 0">
+        <p>Cargando imágenes...</p>
+      </div>
+    </div>
   
-</div>
+    <div class="chat-lateral">
+      <app-chat></app-chat>
+    </div>
+  </div>
