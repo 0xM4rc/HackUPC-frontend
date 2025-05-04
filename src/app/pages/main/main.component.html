@@ -1,24 +1,37 @@
 <div class="layout">
-    <div class="contenido-principal">
-      <h1>Contenido principal</h1>
-      <!-- <ul>
-        <li *ngFor="let id of ids">{{ id }}</li>
-      </ul> -->
-      
-      <h1>Imágenes de Productos Seleccionados</h1>
+  <!-- Columna de contenido -->
+  <main class="main">
+    <h2>Productos recomendados</h2>
 
-      <p>Aquí tienes 5 imágenes de productos seleccionados aleatoriamente:</p>
-      <div *ngIf="idsAleatorios.length > 0">
-        <div *ngFor="let idAleatorio of idsAleatorios" style="margin-bottom: 10px;">
-          <img [src]="getImageUrl(idAleatorio)" alt="Imagen del producto {{ idAleatorio }}" style="max-width: 150px; height: auto;">
-        </div>
-      </div>
-      <div *ngIf="idsAleatorios.length === 0">
-        <p>Cargando imágenes...</p>
-      </div>
-    </div>
-  
-    <div class="chat-lateral">
-      <app-chat></app-chat>
-    </div>
-  </div>
+    <!-- Galería -->
+    <section class="gallery"
+             *ngIf="idsAleatorios.length > 0; else loadingTpl">
+
+      <article class="card" *ngFor="let id of idsAleatorios">
+        <img [src]="getImageUrl(id)"
+             [alt]="'Imagen del producto ' + id">
+
+        <!-- Botón Like flotante (sin contador) -->
+        <button class="like-btn"
+                [class.liked]="isLiked(id)"
+                (click)="toggleLike(id)">
+          <span class="icon">
+            {{ isLiked(id) ? '❤️' : '🤍' }}
+          </span>
+        </button>
+
+        <footer>{{ id }}</footer>
+      </article>
+    </section>
+
+    <!-- Plantilla de carga -->
+    <ng-template #loadingTpl>
+      <p>Cargando imágenes…</p>
+    </ng-template>
+  </main>
+
+  <!-- Chat lateral -->
+  <aside class="chat">
+    <app-chat></app-chat>
+  </aside>
+</div>

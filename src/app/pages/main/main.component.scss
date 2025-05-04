@@ -1,18 +1,114 @@
+/* --- Layout general ---------------------------------------------------- */
 .layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 320px;
   height: 100vh;
-  width: 100vw;
-  overflow: scroll;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
 }
 
-.contenido-principal {
-  flex: 1;
-  padding: 20px;
+/* --- Columna principal ------------------------------------------------- */
+.main {
+  padding: 2rem clamp(1rem, 2vw, 3rem);
   overflow-y: auto;
+
+  h2 { margin-top: 0; font-size: 1.6rem; }
 }
 
-.chat-lateral {
-  background-color: #fff;
-  border-left: 1px solid #ddd;
+/* Scrollbars delgados */
+.main::-webkit-scrollbar,
+.chat::-webkit-scrollbar {
+  width: .4rem;
+}
+.main::-webkit-scrollbar-thumb,
+.chat::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
+/* --- Galería de cards -------------------------------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.06);
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,.12);
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  footer {
+    font-size: .85rem;
+    padding: .4rem .6rem;
+    text-align: center;
+    background: #fafafa;
+  }
+}
+
+/* --- Botón Like -------------------------------------------------------- */
+.like-btn {
+  --transp: rgba(255, 255, 255, .85);
+
+  position: absolute;
+  right: .45rem;
+  top: .45rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+
+  background: var(--transp);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: transform .15s ease, background .15s ease;
+
+  .icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+
+  &.liked .icon {
+    transform: scale(1.2);
+  }
+}
+
+/* --- Chat lateral ------------------------------------------------------ */
+.chat {
+  border-left: 1px solid #e4e4e4;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    border-left: none;
+    border-top: 1px solid #e4e4e4;
+  }
+}

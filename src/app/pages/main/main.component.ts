@@ -1,62 +1,64 @@
-// src/app/pages/main/main.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ChatComponent } from "../../components/chat/chat.component";
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ChatComponent } from '../../components/chat/chat.component';
 import { DataService } from '../../data.service';
 
-type Side = 'left' | 'right';
-
-interface ChatMessage {
-  text: string;
-  side: Side;
-}
-
 @Component({
-  providers: [],
   selector: 'app-main',
+  standalone: true,
   imports: [CommonModule, FormsModule, ChatComponent],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+
   ids: number[] = [];
   idsAleatorios: number[] = [];
-  imageFolder = 'img/'; // Ruta a la carpeta de imágenes
-  imageExtension = '.jpg'; // O '.png', '.gif', etc. según tus archivos
 
-  constructor(private dataService: DataService) { }
+  imageFolder = 'img/';
+  imageExtension = '.jpg';
+
+  // Solo guardamos qué IDs están "liked"
+  private likedIds = new Set<number>();
+
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.cargarYSeleccionarIds();
   }
 
-  cargarYSeleccionarIds(): void {
+  private cargarYSeleccionarIds(): void {
     this.dataService.obtenerDatos().subscribe(data => {
       this.ids = data.map(item => item.id);
       this.seleccionarIdsAleatorios(this.ids, 5);
     });
   }
 
-  seleccionarIdsAleatorios(array: number[], cantidad: number): void {
-    const arrayCopia = [...array];
-    const seleccionados: number[] = [];
+  private seleccionarIdsAleatorios(array: number[], cantidad: number): void {
+    const copia = [...array];
+    const elegidos: number[] = [];
 
-    for (let i = 0; i < cantidad; i++) {
-      if (arrayCopia.length === 0) {
-        break;
-      }
-      const indiceAleatorio = Math.floor(Math.random() * arrayCopia.length);
-      seleccionados.push(arrayCopia.splice(indiceAleatorio, 1)[0]);
+    for (let i = 0; i < cantidad && copia.length; i++) {
+      const indice = Math.floor(Math.random() * copia.length);
+      elegidos.push(copia.splice(indice, 1)[0]);
     }
-    this.idsAleatorios = seleccionados;
+    this.idsAleatorios = elegidos;
   }
 
   getImageUrl(id: number): string {
-    return this.imageFolder + id + this.imageExtension;
+    return `${this.imageFolder}${id}${this.imageExtension}`;
+  }
+
+  toggleLike(id: number): void {
+    if (this.likedIds.has(id)) {
+      this.likedIds.delete(id);
+    } else {
+      this.likedIds.add(id);
+    }
+  }
+
+  isLiked(id: number): boolean {
+    return this.likedIds.has(id);
   }
 }
