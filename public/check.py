@@ -2,7 +2,7 @@ import json
 import os
 
 try:
-    with open('public/food.json', 'r') as archivo:
+    with open('food.json', 'r') as archivo:
         datos_json = json.load(archivo)
     # print(datos_json)
 except FileNotFoundError:
@@ -20,7 +20,7 @@ for item in datos_json:
         continue
     valid_items.append(item)
 
-ruta_archivo_salida = 'public/food_valid.json'
+ruta_archivo_salida = 'food_valid.json'
 
 with open(ruta_archivo_salida, 'w') as archivo_salida:
     json.dump(valid_items, archivo_salida, indent=4)  # Indentación para mejor legibilidad
