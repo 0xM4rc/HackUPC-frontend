@@ -8,10 +8,8 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RegisterComponent, MainComponent, RouterOutlet],
-  // template: '<app-register></app-register>'
-  // template: ''
-  template: '<router-outlet></router-outlet>'
+  template: `<router-outlet></router-outlet>`,
+  imports: [CommonModule, RouterOutlet]
 })
 export class AppComponent {}
 

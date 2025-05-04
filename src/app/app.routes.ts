@@ -1,18 +1,13 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
-
+// src/app/app.routes.ts
+import { Routes } from '@angular/router';
 import { RegisterComponent } from './pages/register/register.component';
-import { MainComponent } from './pages/main/main.component';
+import { MainComponent }     from './pages/main/main.component';
+import { authGuard } from './guard/auth.guard';
+
 
 export const routes: Routes = [
-    {path: '', component: MainComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'main', component: MainComponent}
+  { path: '',        pathMatch: 'full', redirectTo: 'main' },
+  { path: 'main',    component: MainComponent,  canActivate: [authGuard] },
+  { path: 'register', component: RegisterComponent },
+  { path: '**',      redirectTo: '' }
 ];
-
-@NgModule({
-    imports: [RouterModule.forRoot(routes)], // Usar forRoot en el módulo principal
-    exports: [RouterModule]
-  })
-
-export class AppRoutingModule { }
