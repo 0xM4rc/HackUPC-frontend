@@ -17,7 +17,7 @@ interface Producto {
   providedIn: 'root'
 })
 export class DataService {
-  private jsonDataUrl = 'food.json'; // Ruta al archivo JSON
+  private jsonDataUrl = 'food_valid.json'; // Ruta al archivo JSON
 
   constructor(private http: HttpClient) { }
 
